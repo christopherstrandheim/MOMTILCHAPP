@@ -65,10 +65,14 @@ public class Storage {
 	}
 
 	public void removeClientSession(String user) {
-		// and remove client session for user from the storage
-		//finner brukeren og fjerner den
-		clients.get(user).disconnect();
-		
+
+		ClientSession session = clients.get(user);
+
+		if (session != null) {
+			session.disconnect();
+			clients.remove(user);
+		}
+
 	}
 
 	public void createTopic(String topic) {
